@@ -1,0 +1,12 @@
+{
+  "name": "learn_ts",
+  "version": "1.0.0",
+  "description": "Udemy course https://www.udemy.com/course/understanding-typescript/",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "lite-server"
+  },
+  "author": "Helen Aratovska",
+  "license": "ISC"
+}
