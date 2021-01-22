@@ -38,3 +38,5 @@ __pycache__/
 npm-debug.log
 core_types/package-lock.json
 core_types/node_modules/
+
+.DS_Store
