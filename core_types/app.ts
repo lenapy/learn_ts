@@ -1,13 +1,36 @@
-function sum(n1: number, n2: number, showResult: boolean, phrase: string) {
-	const result = n1 + n2;
-	if (showResult) {
-		console.log(phrase + result);
-	}
-	return n1 + n2;
-}
 
-const number1 = 5;
-const number2 = 2.8;
-const printResult = true;
-const resultPhrase = 'Result is: ';
-sum(number1, number2, printResult, resultPhrase);
+enum Role { ADMIN = 5, READ_ONLY, AUTHOR } 
+// const person: {
+//     name: string;
+//     age: number;
+//     hobbies: string[];
+//     roleTuple: [number, string]; // tuple type, in js will be simple array
+// } = {
+const person = {
+    name: 'Helen',
+    age: 30, 
+    hobbies: ['Sports', 'Cooking'],
+    roleTuple: [2, 'author'],
+    roleEnum: Role.ADMIN,
+};
+
+// person.roleTuple.push('admin'); // exception that is allowed in tuples
+// person.roleTuple[1] = 10;
+
+// person.rroleTuple = []; isn't allowed
+// person.roleTuple = [1, 'test', 'test2']; isn't allowed
+
+console.log(person); 
+
+// let activities: any[];
+// activities = ['Sports', 1];
+
+let activities: string[];
+activities = ['Sports'];
+
+// loop over hobbies
+for (const hobby of person.hobbies) {
+    console.log(hobby.toUpperCase());
+    // console.log(hobby.map()); // !! ERROR !!
+}
+ 

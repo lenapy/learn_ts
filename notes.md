@@ -18,7 +18,7 @@ The core task of TS checking types and yelling at us if we're using them incorre
 - Rich Configuration Options
 - Modern Tooling that helps even in non-TS Projects
 
-## Difference:
+## Difference
 
 - JS usese 'dynamic types' resolved at runtime
 - TS uses 'static types' set during development
@@ -31,18 +31,57 @@ JS has no compilation step but at runtime, you can check for certain types (e.g.
 
 With TS you only get support during development, not in runtime, TS logic can't be executed in the browser it only can be executed when you compile the code
 
-# Types
+## Types
 
-## Core types
+### Core types
 
 | type |  example  | description |
 |---------|----------------|------------------------------------------------------------|
 |number|1, 5.3, -10 |All numbers, no differentiation between integers or floats|
-| string  | 'Hi', "Hi", `` | All text values                                            |
+| string  | '', "", `` | All text values                                            |
 | boolean | true, false    | Just two, no "truthy" or "falsy" values                    |
 |object|{age: 30}|Any JS object, more specific types (type of object) are possible|
+|Array|[1, 2, 3]|Any JS array, type can be flexible or strict (regarding the element types|
+|Tuple|[1, 2]|Added by TS: Fixed-length, Fixed-type array|
+|Enum|{NEW, OLD}|Added by TS: Automatically enumerated global constant identifiers|
 
-## Type Casing
+### Object
+
+In ts object we don't have key value pairs there but we have key type pairs;
+
+ts object describes the type of object that is getting used somewhere
+
+### Nested Objects
+
+Let's say we have this JavaScript object:
+
+```js
+const product = {
+  id: 'abc1',
+  price: 12.99,
+  tags: ['great-offer', 'hot-and-new'],
+  details: {
+    title: 'Red Carpet',
+    description: 'A great carpet - almost brand-new!'
+  }
+}
+```
+
+This would be the type of such an object:
+
+```ts
+{
+  id: string;
+  price: number;
+  tags: string[],
+  details: {
+    title: string;
+    description: string;
+  }
+}
+```
+
+### Type Casting
 
 In TypeScript, you work with types like string or number all the times.
 Important: It is string and number (etc.), NOT String, Number etc.
