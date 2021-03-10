@@ -44,14 +44,15 @@ With TS you only get support during development, not in runtime, TS logic can't 
 |Array|[1, 2, 3]|Any JS array, type can be flexible or strict (regarding the element types|
 |Tuple|[1, 2]|Added by TS: Fixed-length, Fixed-type array|
 |Enum|{NEW, OLD}|Added by TS: Automatically enumerated global constant identifiers|
+|Any|*|Any kind of value, no specific type assigment|
 
-### Object
+#### Object
 
 In ts object we don't have key value pairs there but we have key type pairs;
 
 ts object describes the type of object that is getting used somewhere
 
-### Nested Objects
+#### Nested Objects
 
 Let's say we have this JavaScript object:
 
@@ -75,16 +76,64 @@ This would be the type of such an object:
   price: number;
   tags: string[],
   details: {
-    title: string;
+    title: string; 
     description: string;
   }
 }
 ```
 
-### Type Casting
+#### Any
+
+It basically means you can store any kind of value
+
+Takes away almost all advantages ts gives you
+
+#### Type Casting
 
 In TypeScript, you work with types like string or number all the times.
 Important: It is string and number (etc.), NOT String, Number etc.
 The core primitive types in TypeScript are all lowercase!
 
 TS has a built in feature which is called: 'type inferense', this means that TS tries to understand which type you have in certan variable or constant
+
+### Union types
+
+If we have some place in our app, where the parametr of a function (constant/variable) can accept two different kinds of values
+union type can help with that
+
+```ts
+function combine(input1: number | string, input2: number | string) {
+  let result;
+    if (typeof input1 === 'number' && typeof input2 === 'number') {
+        result = input1 + input2;
+    } else {
+        result = input1.toString() + input2.toString();
+    }
+  return result;
+}  
+```
+
+So we can use union types to be more flexible regarding what we do in a function or any other place in a code
+
+### Literal types
+
+Literal types are types where you don't just say that certain variable or parameters should hold a number or a string
+but where you're very claer about the exact value it should hold
+
+```ts
+function combine(input1: number | string, input2: number | string, resultType: 'as-number' | 'as-text') {
+  let result;
+  if (typeof input1 === 'number' && typeof input2 === 'number' || resultType === 'as-number') {
+      result = +input1 + +input2;
+  } else {
+      result = input1.toString() + input2.toString();
+  }
+  return result;
+}  
+```
+
+Here in the resultType variable we combine union type and literal type
+Any other string value besides 'as-number' or 'as-text' will not be allowed
+
+Another eaxample of literal type is:
+const a = 2.8; // here expected values would be not a random number but a specific number -> 2.8
